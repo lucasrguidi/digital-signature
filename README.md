@@ -118,10 +118,9 @@ A aplicação segue uma estrutura modular dentro da pasta `src/`:
 
 ## ⚠️ Desafios Enfrentados
 
-- **Persistência de arquivos**: ao invés de persistir os arquivos no banco de dados, optei por salvá-los no diretório local /public/uploads com fs.promises.writeFile, o que é mais leve e eficiente para servir PDFs diretamente via frontend.
-- **Visualização dos PDFs**: usei a tag <embed> apontando para o caminho local do arquivo (/uploads/{filename}), permitindo renderização nativa do PDF no navegador sem precisar de bibliotecas externas.
-- **Assinatura simplificada**: para simulação rápida, utilizei uma biblioteca simles que permite assinar e converter a assinatura em imagem.
-
+- **Persistência de arquivos**: optei por salvar os arquivos localmente no diretório /public/uploads usando fs.promises.writeFile, em vez de persistir os PDFs no banco de dados. Essa abordagem simplifica a solução, evitando a necessidade de configurar um serviço externo de armazenamento (como S3, Firebase, etc.), além de permitir que os arquivos sejam servidos diretamente pelo frontend de forma eficiente.
+- **Visualização dos PDFs**: para exibir os documentos, utilizei a tag HTML <embed> apontando diretamente para o caminho do arquivo (/uploads/{filename}). Isso permite a renderização nativa dos PDFs no navegador, sem depender de bibliotecas externas. A abordagem é leve, funcional e aproveita recursos já suportados pelos principais navegadores.
+- **Assinatura simplificada**: para simular a assinatura de documentos, utilizei a biblioteca react-signature-canvas, que permite desenhar a assinatura com o mouse (ou toque) e exportá-la como imagem. Isso facilitou a implementação de uma interface interativa e visualmente próxima de uma assinatura real, sem complexidade adicional.
 ---
 
 ## 📄 Observações Finais
