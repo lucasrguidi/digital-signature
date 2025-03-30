@@ -1,0 +1,50 @@
+// prisma/schema.prisma
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id        String      @id @default(cuid())
+  name      String?
+  email     String      @unique
+  password  String?
+  githubId  String?
+  documents Document[]
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+  Signature Signature[]
+}
+
+model Document {
+  id         String         @id @default(cuid())
+  name       String
+  fileKey    String
+  userId     String
+  user       User           @relation(fields: [userId], references: [id])
+  status     DocumentStatus @default(PENDING)
+  signatures Signature[]
+  createdAt  DateTime       @default(now())
+  updatedAt  DateTime       @updatedAt
+}
+
+model Signature {
+  id           String   @id @default(cuid())
+  documentId   String
+  userId       String
+  signatureImg String
+  signedAt     DateTime
+  createdAt    DateTime @default(now())
+  document     Document @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  user         User     @relation(fields: [userId], references: [id])
+}
+
+enum DocumentStatus {
+  PENDING
+  SIGNED
+}
