@@ -1,7 +1,6 @@
 # Digital Signature Platform
 
-Protótipo de uma aplicação de gerenciamento e assinatura digital de documentos, desenvolvido como parte de um teste técnico para vaga de Desenvolvedor Frontend.
-
+Protótipo de uma aplicação de gerenciamento e assinatura digital de documentos.
 ## 🚀 Tecnologias Utilizadas
 
 - **Next.js (App Router)**
